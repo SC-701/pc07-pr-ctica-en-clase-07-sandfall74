@@ -12,7 +12,7 @@ BEGIN
     SELECT 
         P.[Id],
         P.[IdSubCategoria],
-        P.[Nombre] AS ProductoNombre,
+        P.[Nombre],
         P.[Descripcion],
         P.[Precio],
         P.[Stock],
