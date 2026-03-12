@@ -1,0 +1,31 @@
+﻿using Abstracciones.Interfaces.API;
+using Abstracciones.Interfaces.Flujo;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers
+{
+    [Route("api/Categoria")]
+    [ApiController]
+    public class CategoriaController : ControllerBase , ICategoriaController
+    {
+        private readonly ICategoriaFlujo _categoriaFlujo;
+
+        public CategoriaController(ICategoriaFlujo categoriaFlujo)
+        {
+            _categoriaFlujo = categoriaFlujo;
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Obtener()
+        {
+            var resultado = await _categoriaFlujo.ObtenerCategorias();
+            if (!resultado.Any()) {
+                return NoContent();
+            }
+
+            return Ok(resultado);
+        }
+    }
+}
