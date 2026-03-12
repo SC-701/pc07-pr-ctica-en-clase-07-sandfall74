@@ -44,11 +44,8 @@ namespace Web.Pages.Productos
             }
 
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "AgregarProducto");
-
             var cliente = new HttpClient();
-
             var respuesta = await cliente.PostAsJsonAsync(endpoint, producto);
-
             respuesta.EnsureSuccessStatusCode();
 
             return RedirectToPage("./Index");
@@ -57,17 +54,11 @@ namespace Web.Pages.Productos
         private async Task ObtenerCategorias()
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerCategorias");
-
             var cliente = new HttpClient();
-
             var respuesta = await cliente.GetAsync(endpoint);
-
             respuesta.EnsureSuccessStatusCode();
-
             var resultado = await respuesta.Content.ReadAsStringAsync();
-
             var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
             var resultadoDeserializado = JsonSerializer.Deserialize<List<Categoria>>(resultado, opciones);
 
             categorias = resultadoDeserializado.Select(categoria => new SelectListItem
@@ -80,19 +71,14 @@ namespace Web.Pages.Productos
         private async Task<List<SubCategoria>?> ObtenerSubCategorias(Guid categoriaID)
         {
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerSubCategorias");
-
             var cliente = new HttpClient();
-
             var respuesta = await cliente.GetAsync(string.Format(endpoint, categoriaID));
-
             respuesta.EnsureSuccessStatusCode();
 
             if (respuesta.StatusCode == HttpStatusCode.OK)
             {
                 var resultado = await respuesta.Content.ReadAsStringAsync();
-
                 var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
                 return JsonSerializer.Deserialize<List<SubCategoria>>(resultado, opciones);
             }
 
