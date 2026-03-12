@@ -17,8 +17,7 @@
                 </h5>
 
                 <p class="text-muted">
-                    Categoría: @Html.DisplayFor(modelo => modelo.Producto.Categoria)
-                    |
+                    Categoría: @Html.DisplayFor(modelo => modelo.Producto.Categoria) |
                     SubCategoría: @Html.DisplayFor(modelo => modelo.Producto.SubCategoria)
                 </p>
 
@@ -29,7 +28,7 @@
 
                 <div class="mb-2">
                     <b>@Html.DisplayNameFor(modelo => modelo.Producto.Precio):</b>
-                    ₡@Html.DisplayFor(modelo => modelo.Producto.Precio)
+                    $@Html.DisplayFor(modelo => modelo.Producto.Precio)
                 </div>
 
                 <div class="mb-2">
