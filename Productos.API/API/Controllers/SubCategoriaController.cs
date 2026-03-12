@@ -16,7 +16,7 @@ namespace API.Controllers
             _subCategoria = subCategoria;
         }
 
-        [HttpGet]
+        [HttpGet("{categoriaID}")]
         public async Task<IActionResult> Obtener(Guid CategoriaID)
         {
             var resultado = await _subCategoria.ObtenerSubCategoria(CategoriaID);
